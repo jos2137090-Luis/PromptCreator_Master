@@ -1,0 +1,862 @@
+/* Prompt Creator Master - Complete Design System */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --primary-bg: #1a1a2e;
+    --secondary-bg: #1f1f3a;
+    --text-standard: #f0f0f5;
+    --text-heading: #ffffff;
+    --accent-cyan: #00f0ff;
+    --accent-magenta: #f000ff;
+    --success: #00ff88;
+    --warning: #ffaa00;
+    --error: #ff0066;
+}
+
+body {
+    font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-standard);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-cyan);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
+}
+
+header h1 {
+    color: var(--text-heading);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+header p {
+    color: var(--accent-cyan);
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 3rem;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Lens Grid */
+.lens-container h2 {
+    color: var(--text-heading);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.lens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.lens-card {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.lens-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.lens-card:hover::before {
+    left: 100%;
+}
+
+.lens-card:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+    transform: translateY(-8px);
+}
+
+.lens-card h3 {
+    color: var(--accent-cyan);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.lens-card p {
+    color: var(--text-standard);
+    font-size: 1rem;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: var(--secondary-bg);
+    color: var(--accent-cyan);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+    transform: translateY(-2px);
+    color: var(--text-heading);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+    color: var(--text-heading);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-bg);
+    border: 2px solid var(--accent-cyan);
+}
+
+/* Input Styles */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    color: var(--accent-cyan);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.input-text,
+.input-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--secondary-bg);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: var(--text-standard);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.input-text:focus,
+.input-textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+}
+
+.input-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+    margin-bottom: 1rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checkbox-item:hover {
+    background-color: rgba(0, 240, 255, 0.05);
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+    cursor: pointer;
+    accent-color: var(--accent-cyan);
+}
+
+.checkbox-item label {
+    cursor: pointer;
+    color: var(--text-standard);
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Add this line */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    /* ... other modal styles ... */
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid var(--accent-cyan);
+    box-shadow: 0 0 50px rgba(0, 240, 255, 0.5);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+    color: var(--text-heading);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--accent-cyan);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--accent-magenta);
+    transform: rotate(90deg);
+}
+
+/* Navigation */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--secondary-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+    transition: width 0.3s ease;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none !important;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+/* styles/main.css (add this to the end) */
+
+/* ============================================= */
+/* ==     SESSION 4: Q&A INTERFACE STYLES       == */
+/* ============================================= */
+
+/* Hide the lens selection screen when QA is active */
+#qa-screen.active {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#lens-selection.hidden {
+    display: none;
+}
+
+#qa-screen {
+    display: none; /* Hidden by default */
+}
+
+#qa-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.qa-nav-btn {
+    background-color: #1f1f3a; /* Secondary Background */
+    color: #00f0ff; /* Primary Accent */
+    border: 1px solid #00f0ff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.qa-nav-btn:hover {
+    background-color: #00f0ff;
+    color: #1a1a2e;
+    box-shadow: 0 0 15px #00f0ff; /* Hover glow */
+}
+
+#qa-progress-bar {
+    flex-grow: 1;
+    height: 10px;
+    background-color: #1f1f3a; /* Secondary Background */
+    border-radius: 5px;
+    margin: 0 20px;
+    overflow: hidden;
+}
+
+#qa-progress-fill {
+    width: 0%; /* We'll update this with JS */
+    height: 100%;
+    background-color: #00f0ff; /* Primary Accent */
+    transition: width 0.3s ease;
+}
+
+#qa-content {
+    flex-grow: 1;
+    background-color: #1f1f3a; /* Secondary Background */
+    padding: 25px;
+    border-radius: 8px;
+    color: #f0f0f5; /* Text Standard */
+    overflow-y: auto; /* Allow scrolling if content is long */
+}
+
+#qa-question-title {
+    color: #ffffff; /* Text Headings */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+#qa-choices-container .qa-choice {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+/* Styling for our custom checkboxes */
+#qa-choices-container input[type="checkbox"],
+.qa-skip-option input[type="checkbox"] {
+    /* Use accent color for the box */
+    accent-color: #00f0ff; 
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.qa-custom-answer {
+    margin: 25px 0;
+}
+
+.qa-custom-answer label {
+    display: block;
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.qa-custom-answer textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #1a1a2e; /* Primary Background */
+    border: 1px solid #00f0ff;
+    border-radius: 4px;
+    color: #f0f0f5;
+    padding: 10px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.qa-skip-option {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #f0f0f5;
+}
+
+#qa-preview {
+    width: 100%;
+    height: 200px; /* Fixed height for the preview */
+    background-color: #1a1a2e; /* Primary Background */
+    border: 1px solid #1f1f3a;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    color: #f0f0f5;
+}
+
+#qa-preview h3 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #1f1f3a;
+    padding-bottom: 5px;
+}
+
+#qa-preview-text {
+    white-space: pre-wrap; /* Allows text to wrap */
+    word-wrap: break-word;
+    font-family: monospace;
+    font-size: 14px;
+}
+/* src/styles/main.css (add to the end) */
+
+/* ============================================= */
+/* ==     SESSION 5: WORKBENCH STYLES           == */
+/* ============================================= */
+
+/* Hides the Q&A screen when Workbench is active */
+#qa-screen.hidden {
+    display: none;
+}
+
+#workbench-screen.active {
+    display: flex; /* This makes it visible */
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#workbench-screen {
+    display: none; /* Hidden by default */
+}
+
+#workbench-nav {
+    margin-bottom: 20px;
+    /* Uses .qa-nav-btn class from Session 4 */
+}
+
+#workbench-layout {
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+    /* Calculate height minus the nav bar */
+    height: calc(100% - 70px); 
+}
+
+#workbench-preview-container {
+    flex: 2; /* Takes 2/3 of the space */
+    background-color: #1f1f3a; /* Secondary Background */
+    border-radius: 8px;
+    padding: 20px;
+    overflow-y: auto;
+    color: #f0f0f5; /* Text Standard */
+}
+
+#workbench-preview-container h3,
+#workbench-actions-container h3 {
+    color: #ffffff; /* Text Headings */
+    margin-top: 0;
+    border-bottom: 1px solid #1a1a2e;
+    padding-bottom: 10px;
+}
+
+#workbench-prompt-text {
+    white-space: pre-wrap; /* Preserves formatting */
+    word-wrap: break-word;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+#workbench-actions-container {
+    flex: 1; /* Takes 1/3 of the space */
+    background-color: #1f1f3a; /* Secondary Background */
+    border-radius: 8px;
+    padding: 20px;
+    color: #f0f0f5; /* Text Standard */
+}
+/* src/styles/main.css (add to the end) */
+
+/* ============================================= */
+/* ==     SESSION 9: WORKBENCH UPGRADE STYLES   == */
+/* ============================================= */
+
+.wb-actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.wb-action-btn {
+    background-color: #1f1f3a; /* Secondary Bg */
+    color: #f0f0f5; /* Text Standard */
+    border: 1px solid #00f0ff; /* Primary Accent */
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.wb-action-btn:hover {
+    background-color: #00f0ff; /* Primary Accent */
+    color: #1a1a2e; /* Primary Bg */
+    box-shadow: 0 0 15px #00f0ff; /* Hover glow */
+}
+
+/* Accent button for primary actions [cite: 502] */
+.wb-action-btn.accent {
+    background-color: #00f0ff;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+
+.wb-action-btn.accent:hover {
+    background-color: #1f1f3a;
+    color: #00f0ff;
+}
+
+#remix-container {
+    margin-top: 20px;
+    border-top: 1px solid #1a1a2e;
+    padding-top: 15px;
+}
+
+#remix-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.wb-note {
+    font-size: 14px;
+    color: #f0f0f5;
+    opacity: 0.7;
+    margin-top: 20px;
+}
+/* src/styles/main.css (add to the end) */
+
+.remix-option {
+    background-color: #1a1a2e; /* Primary Bg */
+    border: 1px solid #1f1f3a; /* Secondary Bg */
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.remix-option:hover {
+    border-color: #00f0ff; /* Primary Accent */
+}
+
+.remix-option input[type="radio"] {
+    accent-color: #00f0ff;
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+.remix-option label {
+    display: inline-block;
+    width: calc(100% - 30px);
+    cursor: pointer;
+}
+
+.remix-option label strong {
+    color: #ffffff; /* Headings */
+    display: block;
+}
+
+.remix-option label small {
+    color: #f0f0f5; /* Text Standard */
+    opacity: 0.8;
+    display: block;
+    margin-top: 5px;
+}
+/* src/styles/main.css (add to the end) */
+
+/* ============================================= */
+/* ==     SESSION 10: VAULT SCREEN STYLES       == */
+/* ============================================= */
+
+/* Hide other screens when Vault is active */
+#workbench-screen.hidden,
+#lens-selection.hidden,
+#qa-screen.hidden {
+    display: none;
+}
+
+#vault-screen.active {
+    display: flex; /* Makes the vault visible */
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#vault-screen {
+    display: none; /* Hidden by default */
+}
+
+#vault-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #1f1f3a; /* Secondary Bg */
+    padding-bottom: 15px;
+}
+
+#vault-nav h2 {
+    color: #ffffff; /* Headings */
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+#vault-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* General input styling (can reuse) */
+.input-text,
+.input-select,
+.input-textarea {
+    background-color: #1a1a2e; /* Primary Bg */
+    border: 1px solid #00f0ff; /* Primary Accent */
+    border-radius: 4px;
+    color: #f0f0f5; /* Text Standard */
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.input-text {
+    flex-grow: 1; /* Search takes up available space */
+}
+
+.input-select {
+    min-width: 200px;
+}
+
+#vault-list-container {
+    flex-grow: 1; /* List takes remaining vertical space */
+    background-color: #1f1f3a; /* Secondary Bg */
+    border-radius: 8px;
+    padding: 15px;
+    overflow-y: auto; /* Allow scrolling */
+}
+
+#vault-prompt-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vault-list-item {
+    background-color: #1a1a2e; /* Primary Bg */
+    border: 1px solid #1f1f3a;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.vault-list-item:hover {
+    border-color: #00f0ff; /* Primary Accent */
+}
+
+.vault-list-item h4 {
+    color: #ffffff; /* Headings */
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.vault-list-item p {
+    color: #f0f0f5; /* Text Standard */
+    font-size: 14px;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+.vault-list-item .tags {
+    font-size: 12px;
+    color: #00f0ff; /* Primary Accent */
+}
+
+/* --- Save Modal Styles --- */
+/* (Uses .modal styles from Session 2) */
+
+.modal-content.large {
+    width: 60%; /* Make save modal wider */
+    max-width: 700px;
+}
+
+.modal-body .input-group {
+    margin-bottom: 15px;
+}
+
+.modal-body label {
+    display: block;
+    color: #ffffff; /* Headings */
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.input-textarea {
+    width: 100%;
+    resize: vertical; /* Allow vertical resize */
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #1f1f3a;
+}
+
+/* Inline button/input for new category */
+.btn-inline {
+    background: none;
+    border: 1px solid #00f0ff;
+    color: #00f0ff;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.btn-inline:hover {
+    background-color: #00f0ff;
+    color: #1a1a2e;
+}
+.input-text.inline {
+    width: auto;
+    margin-left: 10px;
+}
+.hidden {
+    display: none;
+}
+
+/* Reusable Button styles from Session 2 */
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+.btn-primary {
+    background-color: #00f0ff; /* Primary Accent */
+    color: #1a1a2e; /* Primary Bg */
+}
+.btn-primary:hover {
+    background-color: #1f1f3a; /* Secondary Bg */
+    color: #00f0ff;
+    box-shadow: 0 0 10px #00f0ff;
+}
+.btn-secondary {
+    background-color: #1f1f3a; /* Secondary Bg */
+    color: #f0f0f5; /* Text Standard */
+    border: 1px solid #f0f0f5;
+}
+.btn-secondary:hover {
+    background-color: #f0f0f5;
+    color: #1a1a2e;
+}
